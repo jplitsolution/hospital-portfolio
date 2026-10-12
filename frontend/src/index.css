@@ -4,47 +4,53 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette - Light Theme */
-  --primary: #0E56A8;
-  --primary-hover: #0a4384;
-  --primary-light: #EBF3FC;
-  --primary-gradient: linear-gradient(135deg, #0E56A8 0%, #1A73E8 100%);
+  /* Color Palette - Refined Medical Deep Teal + Warm Coral + Sage Mint */
+  --primary: #0C4A4E;
+  --primary-hover: #083437;
+  --primary-light: #EBF5F5;
+  --primary-gradient: linear-gradient(135deg, #0C4A4E 0%, #16697A 100%);
   
-  --secondary: #00BFA5;
-  --secondary-hover: #009688;
-  --secondary-light: #E0F7F4;
+  --secondary: #0D9488;
+  --secondary-hover: #0F766E;
+  --secondary-light: #E6F7F5;
+
+  --coral: #D14D33;
+  --coral-hover: #B83E26;
+  --coral-light: #FDECE9;
   
-  --text-heading: #0A2540;
-  --dark-navy: #0A2540;
-  --dark-navy-soft: #1E3A5F;
+  --text-heading: #0A252E;
+  --dark-navy: #0A252E;
+  --dark-navy-soft: #143A44;
   
-  --bg-topbar: #0A2540;
-  --bg-footer: #0A2540;
-  --logo-aura: #0E56A8;
-  --logo-care: #00BFA5;
+  --bg-topbar: #082C35;
+  --bg-footer: #082C35;
+  --bg-dark-card: #0C3844;
+  --logo-aura: #0C4A4E;
+  --logo-care: #0D9488;
   
-  --emergency: #EF4444;
-  --emergency-hover: #DC2626;
-  --emergency-light: #FEE2E2;
+  --emergency: #D14D33;
+  --emergency-hover: #B83E26;
+  --emergency-light: #FDECE9;
   
-  --bg-page: #F8FAFC;
+  --bg-page: #F3F8F8;
   --bg-surface: #FFFFFF;
   --bg-surface-elevated: #FFFFFF;
-  --bg-subtle: #F1F5F9;
+  --bg-subtle: #EBF3F3;
+  --bg-hero-mint: #CDEAEA;
   
-  --text-main: #0F172A;
-  --text-muted: #64748B;
-  --text-light: #94A3B8;
+  --text-main: #1E293B;
+  --text-muted: #5A6E78;
+  --text-light: #8E9FA6;
   --text-inverse: #FFFFFF;
   
-  --border-subtle: #E2E8F0;
-  --border-focus: #0E56A8;
+  --border-subtle: #D8E6E6;
+  --border-focus: #0C4A4E;
   
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(14, 86, 168, 0.04);
-  --shadow-md: 0 8px 24px -4px rgba(14, 86, 168, 0.08);
-  --shadow-lg: 0 16px 40px -8px rgba(10, 37, 64, 0.12);
-  --shadow-glow: 0 0 24px rgba(14, 86, 168, 0.25);
+  --shadow-sm: 0 2px 8px rgba(12, 74, 78, 0.05);
+  --shadow-md: 0 8px 24px -4px rgba(12, 74, 78, 0.08);
+  --shadow-lg: 0 16px 40px -8px rgba(8, 44, 53, 0.12);
+  --shadow-glow: 0 0 24px rgba(12, 74, 78, 0.25);
   
   /* Typography */
   --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -75,6 +81,10 @@
   --secondary: #14D4B8;
   --secondary-hover: #00BFA5;
   --secondary-light: rgba(20, 212, 184, 0.15);
+
+  --coral: #FF6B6B;
+  --coral-hover: #EF4444;
+  --coral-light: rgba(255, 107, 107, 0.18);
   
   --emergency: #FF6B6B;
   --emergency-hover: #EF4444;
@@ -87,6 +97,7 @@
   
   --bg-topbar: #070D1E;
   --bg-footer: #070D1E;
+  --bg-dark-card: #081E27;
   --logo-aura: #38BDF8;
   --logo-care: #14D4B8;
   
@@ -94,6 +105,7 @@
   --bg-surface: #0F172A;
   --bg-surface-elevated: #1E293B;
   --bg-subtle: #141E38;
+  --bg-hero-mint: #0E2A34;
   
   --text-main: #F8FAFC;
   --text-muted: #94A3B8;
@@ -224,12 +236,35 @@ img {
 .btn-primary {
   background: var(--primary-gradient);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(14, 86, 168, 0.3);
+  box-shadow: 0 4px 14px rgba(12, 74, 78, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(14, 86, 168, 0.4);
+  box-shadow: 0 8px 22px rgba(12, 74, 78, 0.35);
+}
+
+.btn-coral {
+  background-color: var(--coral);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(209, 77, 51, 0.28);
+}
+
+.btn-coral:hover {
+  background-color: var(--coral-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(209, 77, 51, 0.38);
+}
+
+.btn-dark-teal {
+  background-color: var(--primary);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(12, 74, 78, 0.2);
+}
+
+.btn-dark-teal:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -812,6 +847,61 @@ img {
 
 [data-theme="dark"] .hero-emergency-quick-action:hover {
   background: rgba(239, 68, 68, 0.25) !important;
+}
+
+/* Dark Mode Bento Cards, Dropdowns, and Hover States */
+[data-theme="dark"] .bento-card {
+  background-color: var(--bg-surface) !important;
+  border-color: #1E293B !important;
+  color: var(--text-main);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .bento-card:hover {
+  background-color: var(--bg-surface-elevated) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .btn-outline {
+  border-color: #334155 !important;
+  background-color: var(--bg-surface) !important;
+  color: #F8FAFC !important;
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  border-color: var(--primary) !important;
+  background-color: rgba(56, 189, 248, 0.15) !important;
+  color: var(--primary) !important;
+}
+
+[data-theme="dark"] .btn-coral {
+  background-color: var(--coral) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .btn-dark-teal {
+  background-color: #0E3642 !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .btn-dark-teal:hover {
+  background-color: #124454 !important;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: var(--bg-subtle) !important;
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  border-color: var(--primary) !important;
 }
 
 /* ==========================================================================

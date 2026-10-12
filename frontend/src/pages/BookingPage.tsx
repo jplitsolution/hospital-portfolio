@@ -448,6 +448,9 @@ export const BookingPage: React.FC = () => {
                         <img
                           src={doc.photoUrl}
                           alt={doc.name}
+                          onError={(e) => {
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600';
+                          }}
                           style={{
                             width: '68px',
                             height: '68px',
@@ -457,7 +460,7 @@ export const BookingPage: React.FC = () => {
                           }}
                         />
                         <div>
-                          <div style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--dark-navy)' }}>
+                          <div style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text-heading)' }}>
                             {doc.name}
                           </div>
                           <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
@@ -514,10 +517,13 @@ export const BookingPage: React.FC = () => {
                   <img
                     src={selectedDoctor.photoUrl}
                     alt={selectedDoctor.name}
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600';
+                    }}
                     style={{ width: '52px', height: '52px', borderRadius: '12px', objectFit: 'cover' }}
                   />
                   <div>
-                    <strong style={{ fontSize: '1.05rem', color: 'var(--dark-navy)' }}>
+                    <strong style={{ fontSize: '1.05rem', color: 'var(--text-heading)' }}>
                       {selectedDoctor.name}
                     </strong>
                     <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>

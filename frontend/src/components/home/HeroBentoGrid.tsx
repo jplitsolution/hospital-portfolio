@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Stethoscope, FileText, PhoneCall, ShieldCheck, Star, Activity, Clock, ArrowRight } from 'lucide-react';
-import { HOSPITAL_INFO, DOCTORS } from '../../data/hospitalData';
+import { 
+  Calendar, 
+  Stethoscope, 
+  PhoneCall, 
+  Activity, 
+  User, 
+  Heart, 
+  Video, 
+  CreditCard,
+  X,
+  CheckCircle2,
+  Clock,
+  ShieldCheck
+} from 'lucide-react';
+import { HOSPITAL_INFO } from '../../data/hospitalData';
 
 interface Props {
   onOpenBooking: () => void;
@@ -14,10 +27,26 @@ export const HeroBentoGrid: React.FC<Props> = ({
   onOpenDoctorFinder,
   onOpenReports
 }) => {
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [uhid, setUhid] = useState('');
+
+  const handlePaySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!uhid) return;
+    setPaymentSuccess(true);
+    setTimeout(() => {
+      setPaymentSuccess(false);
+      setShowPaymentModal(false);
+      setUhid('');
+    }, 2500);
+  };
+
   return (
     <section id="home" style={{
-      padding: '40px 0 60px 0',
-      background: 'linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-page) 100%)',
+      padding: '48px 0 64px 0',
+      backgroundColor: 'var(--bg-page)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -26,85 +55,101 @@ export const HeroBentoGrid: React.FC<Props> = ({
         position: 'absolute',
         top: '-10%',
         right: '-5%',
-        width: '500px',
-        height: '500px',
-        background: 'radial-gradient(circle, rgba(14, 86, 168, 0.08) 0%, rgba(0, 191, 165, 0.04) 70%, transparent 100%)',
-        filter: 'blur(60px)',
+        width: '600px',
+        height: '600px',
+        background: 'radial-gradient(circle, rgba(13, 148, 136, 0.08) 0%, rgba(209, 77, 51, 0.04) 70%, transparent 100%)',
+        filter: 'blur(70px)',
         pointerEvents: 'none'
       }} />
 
       <div className="container">
-        {/* Top Hero Layout: Left Content + Right Bento Layout */}
+        {/* Top Hero Layout: Left Content + Right High-Res ICU Image Showcase */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1.15fr 1fr',
-          gap: '40px',
+          gap: '48px',
           alignItems: 'center',
-          marginBottom: '40px'
-        }} className="hero-grid">
+          marginBottom: '52px'
+        }} className="hero-main-grid">
           <style>{`
             @media (max-width: 1024px) {
-              .hero-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+              .hero-main-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
             }
           `}</style>
 
-          {/* Left Column: Hospital Tagline & Call-To-Action */}
+          {/* Left Column: Hospital Tagline & 3 CTA Buttons */}
           <div>
+            {/* Tagline Strip matching PDF: INTENSIVE CARE · EMERGENCY · DIAGNOSTICS */}
             <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              backgroundColor: 'var(--primary-light)',
-              color: 'var(--primary)',
-              padding: '8px 16px',
-              borderRadius: 'var(--radius-full)',
-              fontWeight: 700,
-              fontSize: '0.85rem',
-              marginBottom: '20px',
-              border: '1px solid rgba(14, 86, 168, 0.15)'
+              display: 'inline-block',
+              color: 'var(--secondary)',
+              fontWeight: 800,
+              fontSize: '0.86rem',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              marginBottom: '18px',
+              fontFamily: 'var(--font-main)'
             }}>
-              <ShieldCheck size={16} />
-              <span>NABH & JCI ACCREDITED SUPERSPECIALITY CARE</span>
+              INTENSIVE CARE · EMERGENCY · DIAGNOSTICS
             </div>
 
+            {/* Headline matching PDF: Expert critical care, awake every hour of the day. */}
             <h1 style={{
-              fontSize: 'clamp(2.4rem, 4.2vw, 3.4rem)',
+              fontSize: 'clamp(2.4rem, 4.4vw, 3.6rem)',
               fontWeight: 800,
               letterSpacing: '-0.03em',
-              marginBottom: '20px',
-              color: 'var(--dark-navy)',
-              lineHeight: 1.15
+              marginBottom: '22px',
+              color: 'var(--text-heading)',
+              lineHeight: 1.15,
+              fontFamily: 'var(--font-main)'
             }}>
-              Your Health, <br />
-              <span style={{
-                background: 'var(--primary-gradient)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                Our Sacred Priority
-              </span>
+              Expert critical care, <br />
+              awake every hour of <br />
+              the day.
             </h1>
 
+            {/* Subtext description */}
             <p style={{
               fontSize: '1.12rem',
               color: 'var(--text-muted)',
-              marginBottom: '32px',
-              maxWidth: '540px',
-              lineHeight: 1.6
+              marginBottom: '36px',
+              maxWidth: '560px',
+              lineHeight: 1.65
             }}>
-              Providing trusted, compassionate healthcare with India’s leading specialists, robotic-assisted surgical theatres, and 24/7 emergency trauma care.
+              A dedicated critical care hospital where senior doctors, trained nurses and modern ICU equipment work together when it matters most.
             </p>
 
+            {/* 3 Buttons Side-by-side matching Cloudnine reference */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '16px',
+              gap: '14px',
               flexWrap: 'wrap',
               marginBottom: '36px'
             }}>
+              <a
+                href={`tel:${HOSPITAL_INFO.emergencyNumber.replace(/[^0-9]/g, '')}`}
+                className="btn btn-coral"
+                style={{
+                  padding: '14px 28px',
+                  fontSize: '0.96rem',
+                  fontWeight: 700,
+                  borderRadius: 'var(--radius-full)'
+                }}
+              >
+                <PhoneCall size={18} />
+                <span>Call Emergency</span>
+              </a>
+
               <Link
                 to="/book-appointment"
-                className="btn btn-primary btn-lg"
+                className="btn btn-dark-teal"
+                style={{
+                  padding: '14px 28px',
+                  fontSize: '0.96rem',
+                  fontWeight: 700,
+                  borderRadius: 'var(--radius-full)'
+                }}
               >
                 <Calendar size={18} />
                 <span>Book Appointment</span>
@@ -112,14 +157,22 @@ export const HeroBentoGrid: React.FC<Props> = ({
 
               <button
                 onClick={onOpenDoctorFinder}
-                className="btn btn-outline btn-lg"
+                className="btn btn-outline"
+                style={{
+                  padding: '14px 26px',
+                  fontSize: '0.96rem',
+                  fontWeight: 700,
+                  borderRadius: 'var(--radius-full)',
+                  borderColor: 'var(--border-subtle)',
+                  color: 'var(--primary)'
+                }}
               >
                 <Stethoscope size={18} color="var(--primary)" />
-                <span>Find Doctor by Symptoms</span>
+                <span>Find a Doctor</span>
               </button>
             </div>
 
-            {/* Micro Highlights */}
+            {/* Quality Trust Pill Strip */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -130,327 +183,540 @@ export const HeroBentoGrid: React.FC<Props> = ({
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Clock size={16} color="var(--secondary)" />
-                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)' }}>Zero Waiting Emergency ER</span>
+                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)' }}>
+                  Zero Waiting Emergency ICU
+                </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <ShieldCheck size={16} color="var(--primary)" />
-                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)' }}>Cashless Mediclaim Approved</span>
+                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)' }}>
+                  NABH & Cashless Mediclaim Approved
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Modern Bento Grid Showcase */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '18px'
-          }} className="bento-box-grid">
-            <style>{`
-              @media (max-width: 640px) {
-                .bento-box-grid { grid-template-columns: 1fr !important; }
-              }
-            `}</style>
-
-            {/* Bento Card 1: On-Duty Doctors Live Widget */}
-            <div className="bento-card" style={{
-              gridColumn: 'span 2',
-              background: 'linear-gradient(135deg, var(--bg-surface) 0%, var(--primary-light) 100%)',
-              border: '1px solid rgba(14, 86, 168, 0.15)'
+          {/* Right Column: Rounded Mint Card with ICU Image & 24x7 ICU Backup floating badge */}
+          <div style={{ position: 'relative' }}>
+            <div style={{
+              backgroundColor: '#CDEAEA',
+              borderRadius: '32px',
+              padding: '16px',
+              boxShadow: 'var(--shadow-md)',
+              position: 'relative',
+              overflow: 'hidden'
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{
-                    width: '10px',
-                    height: '10px',
-                    borderRadius: '50%',
-                    backgroundColor: '#10B981',
-                    boxShadow: '0 0 10px #10B981'
-                  }} />
-                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#10B981', textTransform: 'uppercase' }}>
-                    OPD ACTIVE TODAY
-                  </span>
-                </div>
-                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>45+ Specialists</span>
-              </div>
-
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>
-                Senior Consultants Available
-              </h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
-                Cardiology, Orthopaedics, Neurology, and Maternal Specialists are currently on duty.
-              </p>
-
-              {/* Doctor Avatars Stack */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {DOCTORS.slice(0, 4).map((doc, idx) => (
-                    <img
-                      key={doc.id}
-                      src={doc.photoUrl}
-                      alt={doc.name}
-                      style={{
-                        width: '38px',
-                        height: '38px',
-                        borderRadius: '50%',
-                        border: '2px solid var(--bg-surface)',
-                        marginLeft: idx === 0 ? 0 : '-10px',
-                        objectFit: 'cover'
-                      }}
-                    />
-                  ))}
-                  <div style={{
-                    width: '38px',
-                    height: '38px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--primary)',
-                    color: '#FFFFFF',
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: '-10px',
-                    border: '2px solid var(--bg-surface)'
-                  }}>
-                    +40
-                  </div>
-                </div>
-
-                <Link
-                  to="/book-appointment"
-                  style={{
-                    color: 'var(--primary)',
-                    fontWeight: 700,
-                    fontSize: '0.88rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px'
+              <div style={{
+                borderRadius: '24px',
+                overflow: 'hidden',
+                aspectRatio: '4/3',
+                maxHeight: '440px',
+                position: 'relative'
+              }}>
+                <img
+                  src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200"
+                  alt="ICU ward with modern patient bed, ventilator and vital monitors"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=900';
                   }}
-                >
-                  <span>Select Slot</span>
-                  <ArrowRight size={14} />
-                </Link>
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(180deg, rgba(12, 74, 78, 0.05) 0%, rgba(12, 74, 78, 0.35) 100%)',
+                  pointerEvents: 'none'
+                }} />
               </div>
             </div>
 
-            {/* Bento Card 2: 24/7 Ambulance Readiness */}
-            <div className="bento-card" style={{
+            {/* Floating Pill Badge: 24×7 ICU backup - Always staffed, always ready */}
+            <div style={{
+              position: 'absolute',
+              bottom: '32px',
+              left: '32px',
               backgroundColor: 'var(--bg-surface)',
-              borderTop: '3px solid var(--emergency)'
+              borderRadius: 'var(--radius-full)',
+              padding: '10px 20px 10px 14px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              boxShadow: '0 12px 32px rgba(12, 74, 78, 0.16)',
+              border: '1px solid var(--border-subtle)',
+              zIndex: 3
             }}>
               <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                backgroundColor: 'var(--emergency-light)',
+                width: '38px',
+                height: '38px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--coral)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--emergency)',
-                marginBottom: '12px'
+                color: '#FFFFFF',
+                flexShrink: 0
               }}>
                 <Activity size={20} />
               </div>
-              <h4 style={{ fontSize: '1.05rem', marginBottom: '6px' }}>
-                24/7 Ambulance
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
-                GPS-tracked mobile ICU units stationed across city corridors.
-              </p>
-              <div style={{
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                color: 'var(--emergency)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}>
-                <PhoneCall size={14} />
-                <span>Call 108 / {HOSPITAL_INFO.emergencyNumber}</span>
+              <div>
+                <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--text-heading)', lineHeight: 1.2 }}>
+                  24×7 ICU backup
+                </div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+                  Always staffed, always ready
+                </div>
               </div>
-            </div>
-
-            {/* Bento Card 3: Patient Trust & Ratings */}
-            <div className="bento-card" style={{
-              backgroundColor: 'var(--bg-surface)',
-              borderTop: '3px solid var(--secondary)'
-            }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                backgroundColor: 'var(--secondary-light)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--secondary-hover)',
-                marginBottom: '12px'
-              }}>
-                <Star size={20} fill="var(--secondary)" />
-              </div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginBottom: '4px' }}>
-                <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--dark-navy)' }}>4.8</span>
-                <span style={{ fontSize: '0.82rem', color: '#F59E0B' }}>★★★★★</span>
-              </div>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                Based on 1,200+ verified Google Patient Reviews & Recovery stories.
-              </p>
             </div>
           </div>
         </div>
 
-        {/* Quick Action Floating Dock (Below Hero) */}
+        {/* Reference: Lilavati Quick-Link Row (5 Action Cards) */}
         <div style={{
-          background: 'var(--bg-surface)',
-          border: '1px solid var(--border-subtle)',
+          backgroundColor: 'var(--bg-surface)',
           borderRadius: 'var(--radius-xl)',
-          padding: '16px 24px',
-          boxShadow: 'var(--shadow-md)',
+          padding: '24px 28px',
+          border: '1px solid var(--border-subtle)',
+          boxShadow: 'var(--shadow-sm)',
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '16px'
-        }} className="quick-dock">
+          gridTemplateColumns: 'repeat(5, 1fr)',
+          gap: '18px'
+        }} className="quick-links-row">
           <style>{`
-            @media (max-width: 900px) {
-              .quick-dock { grid-template-columns: repeat(2, 1fr) !important; padding: 16px !important; }
+            @media (max-width: 1024px) {
+              .quick-links-row { grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
             }
-            @media (max-width: 480px) {
-              .quick-dock { grid-template-columns: 1fr !important; }
+            @media (max-width: 640px) {
+              .quick-links-row { grid-template-columns: repeat(2, 1fr) !important; padding: 16px !important; }
             }
           `}</style>
 
-          {/* Quick Action 1: Book Appointment */}
-          <Link
-            to="/book-appointment"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '14px',
-              padding: '12px 14px',
-              borderRadius: 'var(--radius-md)',
-              cursor: 'pointer',
-              transition: 'background-color 0.2s',
-              background: 'var(--bg-subtle)'
-            }}
-          >
-            <div style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '12px',
-              backgroundColor: 'var(--primary-light)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--primary)',
-              flexShrink: 0
-            }}>
-              <Calendar size={22} />
-            </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--dark-navy)' }}>Book Appointment</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Choose Doctor & Slot</div>
-            </div>
-          </Link>
-
-          {/* Quick Action 2: Find a Doctor */}
+          {/* Quick-Link 1: Find a Doctor */}
           <div
             onClick={onOpenDoctorFinder}
             style={{
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              gap: '14px',
-              padding: '12px 14px',
-              borderRadius: 'var(--radius-md)',
+              justifyContent: 'center',
+              gap: '10px',
+              padding: '16px 10px',
+              borderRadius: 'var(--radius-lg)',
+              backgroundColor: 'var(--bg-subtle)',
               cursor: 'pointer',
-              transition: 'background-color 0.2s',
-              background: 'var(--bg-subtle)'
+              transition: 'all 0.2s',
+              border: '1px solid transparent'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--secondary)';
+              e.currentTarget.style.backgroundColor = 'var(--bg-surface-elevated)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'transparent';
+              e.currentTarget.style.backgroundColor = 'var(--bg-subtle)';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
             <div style={{
               width: '44px',
               height: '44px',
-              borderRadius: '12px',
+              borderRadius: '50%',
               backgroundColor: 'var(--secondary-light)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--secondary-hover)',
-              flexShrink: 0
+              color: 'var(--secondary)'
             }}>
-              <Stethoscope size={22} />
+              <User size={22} />
             </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--dark-navy)' }}>Find a Doctor</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Search by Symptoms</div>
+            <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-heading)', textAlign: 'center' }}>
+              Find a Doctor
             </div>
           </div>
 
-          {/* Quick Action 3: Download Reports */}
+          {/* Quick-Link 2: Book Appointment */}
+          <Link
+            to="/book-appointment"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              padding: '16px 10px',
+              borderRadius: 'var(--radius-lg)',
+              backgroundColor: 'var(--bg-subtle)',
+              textDecoration: 'none',
+              transition: 'all 0.2s',
+              border: '1px solid transparent'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--coral)';
+              e.currentTarget.style.backgroundColor = 'var(--bg-surface-elevated)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'transparent';
+              e.currentTarget.style.backgroundColor = 'var(--bg-subtle)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <div style={{
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--coral-light)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--coral)'
+            }}>
+              <Calendar size={22} />
+            </div>
+            <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-heading)', textAlign: 'center' }}>
+              Book Appointment
+            </div>
+          </Link>
+
+          {/* Quick-Link 3: Health Checkup */}
+          <Link
+            to="/packages"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              padding: '16px 10px',
+              borderRadius: 'var(--radius-lg)',
+              backgroundColor: 'var(--bg-subtle)',
+              textDecoration: 'none',
+              transition: 'all 0.2s',
+              border: '1px solid transparent'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--primary)';
+              e.currentTarget.style.backgroundColor = 'var(--bg-surface-elevated)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'transparent';
+              e.currentTarget.style.backgroundColor = 'var(--bg-subtle)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <div style={{
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--primary-light)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--primary)'
+            }}>
+              <Heart size={22} />
+            </div>
+            <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-heading)', textAlign: 'center' }}>
+              Health Checkup
+            </div>
+          </Link>
+
+          {/* Quick-Link 4: Video Consultation */}
           <div
-            onClick={onOpenReports}
+            onClick={() => setShowVideoModal(true)}
             style={{
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              gap: '14px',
-              padding: '12px 14px',
-              borderRadius: 'var(--radius-md)',
+              justifyContent: 'center',
+              gap: '10px',
+              padding: '16px 10px',
+              borderRadius: 'var(--radius-lg)',
+              backgroundColor: 'var(--bg-subtle)',
               cursor: 'pointer',
-              transition: 'background-color 0.2s',
-              background: 'var(--bg-subtle)'
+              transition: 'all 0.2s',
+              border: '1px solid transparent'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#0284C7';
+              e.currentTarget.style.backgroundColor = 'var(--bg-surface-elevated)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'transparent';
+              e.currentTarget.style.backgroundColor = 'var(--bg-subtle)';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
             <div style={{
               width: '44px',
               height: '44px',
-              borderRadius: '12px',
-              backgroundColor: 'rgba(59, 130, 246, 0.12)',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(2, 132, 199, 0.12)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#3B82F6',
-              flexShrink: 0
+              color: '#0284C7'
             }}>
-              <FileText size={22} />
+              <Video size={22} />
             </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--dark-navy)' }}>Download Reports</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Enter UHID or Mobile</div>
+            <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-heading)', textAlign: 'center' }}>
+              Video Consultation
             </div>
           </div>
 
-          {/* Quick Action 4: Emergency Contact */}
-          <a
-            href={`tel:${HOSPITAL_INFO.emergencyNumber.replace(/[^0-9]/g, '')}`}
-            className="hero-emergency-quick-action"
+          {/* Quick-Link 5: Pay Online */}
+          <div
+            onClick={() => setShowPaymentModal(true)}
             style={{
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              gap: '14px',
-              padding: '12px 14px',
-              borderRadius: 'var(--radius-md)',
-              transition: 'transform 0.2s'
+              justifyContent: 'center',
+              gap: '10px',
+              padding: '16px 10px',
+              borderRadius: 'var(--radius-lg)',
+              backgroundColor: 'var(--bg-subtle)',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              border: '1px solid transparent'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#059669';
+              e.currentTarget.style.backgroundColor = 'var(--bg-surface-elevated)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'transparent';
+              e.currentTarget.style.backgroundColor = 'var(--bg-subtle)';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
             <div style={{
               width: '44px',
               height: '44px',
-              borderRadius: '12px',
-              backgroundColor: 'var(--emergency)',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(5, 150, 105, 0.12)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#FFFFFF',
-              flexShrink: 0
+              color: '#059669'
             }}>
-              <PhoneCall size={22} />
+              <CreditCard size={22} />
             </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--emergency)' }}>24/7 Emergency</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--emergency-hover)', fontWeight: 600 }}>{HOSPITAL_INFO.emergencyNumber}</div>
+            <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-heading)', textAlign: 'center' }}>
+              Pay Online
             </div>
-          </a>
+          </div>
         </div>
       </div>
+
+      {/* Pay Online Modal */}
+      {showPaymentModal && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(10, 37, 46, 0.6)',
+          backdropFilter: 'blur(4px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+          padding: '20px'
+        }}>
+          <div style={{
+            backgroundColor: 'var(--bg-surface)',
+            borderRadius: 'var(--radius-xl)',
+            padding: '32px',
+            maxWidth: '460px',
+            width: '100%',
+            boxShadow: 'var(--shadow-lg)',
+            border: '1px solid var(--border-subtle)',
+            position: 'relative'
+          }}>
+            <button
+              onClick={() => setShowPaymentModal(false)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                color: 'var(--text-muted)'
+              }}
+            >
+              <X size={22} />
+            </button>
+
+            <h3 style={{ fontSize: '1.3rem', color: 'var(--text-heading)', marginBottom: '8px' }}>
+              Online Hospital Payment
+            </h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '24px' }}>
+              Pay OPD consultation fee, IPD advance deposit, or lab investigation charges securely.
+            </p>
+
+            {paymentSuccess ? (
+              <div style={{
+                padding: '24px',
+                backgroundColor: 'rgba(13, 148, 136, 0.1)',
+                borderRadius: 'var(--radius-md)',
+                textAlign: 'center'
+              }}>
+                <CheckCircle2 size={44} color="var(--secondary)" style={{ margin: '0 auto 12px' }} />
+                <h4 style={{ color: 'var(--text-heading)', marginBottom: '4px' }}>Payment Portal Connected</h4>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Redirecting to secure gateway...</p>
+              </div>
+            ) : (
+              <form onSubmit={handlePaySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div>
+                  <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-heading)', display: 'block', marginBottom: '6px' }}>
+                    Patient UHID or Mobile Number
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. UHID-90812 or 9871108108"
+                    value={uhid}
+                    onChange={(e) => setUhid(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: 'var(--radius-md)',
+                      border: '1.5px solid var(--border-subtle)',
+                      backgroundColor: 'var(--bg-subtle)',
+                      color: 'var(--text-main)',
+                      outline: 'none',
+                      fontSize: '0.95rem'
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-heading)', display: 'block', marginBottom: '6px' }}>
+                    Payment Purpose
+                  </label>
+                  <select style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    borderRadius: 'var(--radius-md)',
+                    border: '1.5px solid var(--border-subtle)',
+                    outline: 'none',
+                    fontSize: '0.95rem',
+                    backgroundColor: 'var(--bg-subtle)',
+                    color: 'var(--text-main)'
+                  }}>
+                    <option>OPD Specialist Consultation Fee</option>
+                    <option>In-Patient Admission Deposit</option>
+                    <option>Diagnostics / MRI / CT Scan Billing</option>
+                    <option>Preventive Health Package</option>
+                  </select>
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn btn-coral"
+                  style={{ width: '100%', padding: '14px', borderRadius: 'var(--radius-full)', fontWeight: 700 }}
+                >
+                  Proceed to Secure Payment
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Video Consultation Modal */}
+      {showVideoModal && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(10, 37, 46, 0.6)',
+          backdropFilter: 'blur(4px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+          padding: '20px'
+        }}>
+          <div style={{
+            backgroundColor: 'var(--bg-surface)',
+            borderRadius: 'var(--radius-xl)',
+            padding: '32px',
+            maxWidth: '480px',
+            width: '100%',
+            boxShadow: 'var(--shadow-lg)',
+            border: '1px solid var(--border-subtle)',
+            position: 'relative'
+          }}>
+            <button
+              onClick={() => setShowVideoModal(false)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                color: 'var(--text-muted)'
+              }}
+            >
+              <X size={22} />
+            </button>
+
+            <div style={{
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(2, 132, 199, 0.12)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#0284C7',
+              marginBottom: '16px'
+            }}>
+              <Video size={24} />
+            </div>
+
+            <h3 style={{ fontSize: '1.3rem', color: 'var(--text-heading)', marginBottom: '8px' }}>
+              Telemedicine & Video Consultation
+            </h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '20px' }}>
+              Consult senior professors and specialists from home with digital prescription delivery.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.88rem', color: 'var(--text-main)' }}>
+                <CheckCircle2 size={16} color="var(--secondary)" />
+                <span>HD Video Call with Senior Clinician</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.88rem', color: 'var(--text-main)' }}>
+                <CheckCircle2 size={16} color="var(--secondary)" />
+                <span>Upload past lab reports & prescriptions</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.88rem', color: 'var(--text-main)' }}>
+                <CheckCircle2 size={16} color="var(--secondary)" />
+                <span>Instant Digital Verified E-Prescription</span>
+              </div>
+            </div>
+
+            <Link
+              to="/book-appointment"
+              onClick={() => setShowVideoModal(false)}
+              className="btn btn-dark-teal"
+              style={{ width: '100%', padding: '14px', borderRadius: 'var(--radius-full)', fontWeight: 700 }}
+            >
+              Book Video Appointment Slot
+            </Link>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

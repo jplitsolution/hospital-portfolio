@@ -36,17 +36,51 @@ export const DoctorDirectory: React.FC<Props> = ({
       borderBottom: '1px solid var(--border-subtle)'
     }}>
       <div className="container">
-        {/* Section Header (Only on Home Page) */}
+        {/* Section Header (Only on Home Page) matching PDF Page 3 */}
         {!isSubpage && (
-          <div className="section-header">
-            <div className="subheading">
-              <Award size={16} />
-              <span>DISTINGUISHED CLINICIANS</span>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            flexWrap: 'wrap',
+            gap: '16px',
+            marginBottom: '32px'
+          }}>
+            <div>
+              <h2 style={{
+                fontSize: 'clamp(2rem, 3.2vw, 2.8rem)',
+                fontWeight: 800,
+                color: 'var(--text-heading)',
+                fontFamily: 'var(--font-main)',
+                letterSpacing: '-0.02em',
+                margin: 0
+              }}>
+                Meet our doctors
+              </h2>
+              <p style={{
+                fontSize: '1.02rem',
+                color: 'var(--text-muted)',
+                marginTop: '6px',
+                marginBottom: 0
+              }}>
+                Dedicated team of critical care specialists, surgeons, and physicians available 24×7.
+              </p>
             </div>
-            <h2>Meet Our Medical Specialists</h2>
-            <p>
-              Consult with top professors, interventional specialists, and surgeons dedicated to compassionate patient outcomes.
-            </p>
+            <Link
+              to="/doctors"
+              style={{
+                fontSize: '0.98rem',
+                fontWeight: 700,
+                color: 'var(--primary)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                textDecoration: 'none'
+              }}
+            >
+              <span>View all doctors</span>
+              <span>→</span>
+            </Link>
           </div>
         )}
 
@@ -185,6 +219,9 @@ export const DoctorDirectory: React.FC<Props> = ({
                       <img
                         src={doc.photoUrl}
                         alt={doc.name}
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600';
+                        }}
                         style={{
                           width: '84px',
                           height: '84px',

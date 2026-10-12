@@ -248,10 +248,13 @@ export const SpecialtyDetailPage: React.FC = () => {
                       <img
                         src={doc.photoUrl}
                         alt={doc.name}
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600';
+                        }}
                         style={{ width: '56px', height: '56px', borderRadius: '14px', objectFit: 'cover' }}
                       />
                       <div>
-                        <strong style={{ fontSize: '1.05rem', color: 'var(--dark-navy)' }}>
+                        <strong style={{ fontSize: '1.05rem', color: 'var(--text-heading)' }}>
                           {doc.name}
                         </strong>
                         <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>

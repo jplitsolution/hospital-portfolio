@@ -14,14 +14,24 @@ export const BlogSection: React.FC = () => {
       backgroundColor: 'var(--bg-page)'
     }}>
       <div className="container">
-        {/* Section Header */}
-        <div className="section-header">
-          <div className="subheading">
-            <BookOpen size={16} />
-            <span>CLINICAL KNOWLEDGE</span>
-          </div>
-          <h2>Health & Wellness Guides</h2>
-          <p>
+        {/* Section Header matching PDF Page 5 */}
+        <div style={{ textAlign: 'left', marginBottom: '36px' }}>
+          <h2 style={{
+            fontSize: 'clamp(2rem, 3.2vw, 2.8rem)',
+            fontWeight: 800,
+            color: 'var(--text-heading)',
+            fontFamily: 'var(--font-main)',
+            letterSpacing: '-0.02em',
+            marginBottom: '8px'
+          }}>
+            Health updates from our doctors
+          </h2>
+          <p style={{
+            fontSize: '1.02rem',
+            color: 'var(--text-muted)',
+            maxWidth: '650px',
+            margin: 0
+          }}>
             Doctor-authored advice on disease prevention, surgical advancements, and healthy lifestyles for you and your family.
           </p>
         </div>

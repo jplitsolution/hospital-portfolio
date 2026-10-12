@@ -108,6 +108,9 @@ export const FacilityDetailPage: React.FC = () => {
               <img
                 src={facility.imageUrl}
                 alt={facility.title}
+                onError={(e) => {
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=900';
+                }}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -331,6 +334,9 @@ export const FacilityDetailPage: React.FC = () => {
                     <img
                       src={of.imageUrl}
                       alt={of.title}
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=600';
+                      }}
                       style={{ width: '48px', height: '48px', borderRadius: '10px', objectFit: 'cover' }}
                     />
                     <div style={{ flex: 1, overflow: 'hidden' }}>
@@ -338,7 +344,7 @@ export const FacilityDetailPage: React.FC = () => {
                         style={{
                           fontSize: '0.88rem',
                           fontWeight: 700,
-                          color: 'var(--dark-navy)',
+                          color: 'var(--text-heading)',
                           whiteSpace: 'nowrap',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis'

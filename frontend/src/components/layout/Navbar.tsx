@@ -16,12 +16,11 @@ export const Navbar: React.FC<Props> = ({
   const location = useLocation();
 
   const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'Specialties', path: '/specialties' },
-    { label: 'Doctors', path: '/doctors' },
-    { label: 'Health Packages', path: '/packages' },
-    { label: 'Facilities', path: '/facilities' },
-    { label: 'Testimonials', path: '/testimonials' },
+    { label: 'Find a Doctor', path: '/doctors' },
+    { label: 'Treatments & Specialities', path: '/specialties' },
+    { label: 'Patients & Visitors', path: '/facilities' },
+    { label: 'Health Checkups', path: '/packages' },
+    { label: 'Insurance', path: '/#insurance' },
     { label: 'Contact', path: '/contact' },
   ];
 
@@ -29,7 +28,7 @@ export const Navbar: React.FC<Props> = ({
     if (path === '/') {
       return location.pathname === '/';
     }
-    return location.pathname === path || location.pathname.startsWith(path);
+    return location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
   };
 
   return (
@@ -40,18 +39,39 @@ export const Navbar: React.FC<Props> = ({
         justifyContent: 'space-between',
         height: '76px'
       }}>
-        {/* Brand Logo */}
+        {/* Brand Logo - Gaikwad Critical Care Hospital */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div className="navbar-logo-icon">
-            <Plus size={28} strokeWidth={3} />
+          <div style={{
+            width: '42px',
+            height: '42px',
+            borderRadius: '10px',
+            backgroundColor: 'var(--secondary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#FFFFFF',
+            boxShadow: '0 4px 12px rgba(13, 148, 136, 0.3)'
+          }}>
+            <Plus size={26} strokeWidth={3.5} />
           </div>
           <div>
-            <div className="navbar-brand-name">
-              <span className="brand-name-aura">Aura</span>
-              <span className="brand-name-care">Care</span>
+            <div style={{
+              fontSize: '1.28rem',
+              fontWeight: 800,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1,
+              color: 'var(--primary)'
+            }}>
+              Gaikwad
             </div>
-            <div className="brand-sub-tag">
-              Superspeciality Hospital
+            <div style={{
+              fontSize: '0.68rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--text-muted)'
+            }}>
+              Critical Care Hospital
             </div>
           </div>
         </Link>
@@ -72,6 +92,12 @@ export const Navbar: React.FC<Props> = ({
                 key={link.label}
                 to={link.path}
                 className={`nav-link-item ${active ? 'active' : ''}`}
+                style={{
+                  fontSize: '0.9rem',
+                  fontWeight: active ? 700 : 500,
+                  color: active ? 'var(--primary)' : 'var(--text-main)',
+                  textDecoration: 'none'
+                }}
               >
                 {link.label}
                 {active && <span className="nav-active-pill" />}
@@ -85,6 +111,7 @@ export const Navbar: React.FC<Props> = ({
           <button
             onClick={onOpenReports}
             className="btn btn-outline btn-sm navbar-reports-btn"
+            style={{ borderRadius: 'var(--radius-full)' }}
           >
             <FileText size={15} />
             <span>Reports</span>
@@ -92,7 +119,8 @@ export const Navbar: React.FC<Props> = ({
 
           <Link
             to="/book-appointment"
-            className="btn btn-primary btn-sm navbar-book-btn"
+            className="btn btn-coral btn-sm navbar-book-btn"
+            style={{ borderRadius: 'var(--radius-full)' }}
           >
             <Calendar size={15} />
             <span>Book Appointment</span>

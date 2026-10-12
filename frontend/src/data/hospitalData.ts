@@ -3,6 +3,7 @@ export interface Department {
   name: string;
   slug: string;
   icon: string;
+  imageUrl: string;
   shortDesc: string;
   fullDesc: string;
   keyServices: string[];
@@ -60,6 +61,7 @@ export interface Testimonial {
   doctorName: string;
   date: string;
   avatarUrl: string;
+  videoThumbnail?: string;
 }
 
 export interface BlogPost {
@@ -81,25 +83,46 @@ export interface FAQItem {
   category: 'OPD' | 'EMERGENCY' | 'INSURANCE' | 'REPORTS' | 'VISITORS';
 }
 
+export interface SymptomTriageItem {
+  id: string;
+  symptom: string;
+  team: string;
+  departmentId: string;
+  urgency: 'critical' | 'high';
+}
+
+export interface PatientGuideItem {
+  id: string;
+  title: string;
+  summary: string;
+  points: string[];
+  linkText: string;
+}
+
 export const HOSPITAL_INFO = {
-  name: 'AuraCare Superspeciality Hospital',
-  tagline: 'Compassionate Care, Advanced Technology',
-  description: 'A 450-bed NABH & JCI accredited premier hospital offering super-specialised clinical excellence, world-class modular operation theatres, and 24/7 dedicated emergency care.',
+  name: 'Gaikwad Critical Care Hospital',
+  brandName: 'Gaikwad',
+  categoryTag: 'CRITICAL CARE HOSPITAL',
+  tagline: 'Expert critical care, awake every hour of the day.',
+  heroSubtitle: 'A dedicated critical care hospital where senior doctors, trained nurses and modern ICU equipment work together when it matters most.',
+  description: 'A dedicated 450-bed critical care hospital where senior doctors, trained nurses, and modern ICU equipment work together when it matters most.',
   emergencyNumber: '011-4771-9999',
   ambulanceNumber: '108 / +91-9871-108108',
   opdBoardline: '011-4771-0000',
   whatsappNumber: '+919871108108',
-  email: 'care@auracarehospital.com',
+  email: 'care@gaikwadhospital.com',
   address: 'Plot 12, Institutional Area, Sector 44, New Delhi - 110003',
-  landmark: 'Near Metro Station & NH-48 Expressway',
+  landmark: 'Opposite Metro Interchange, Express Corridor',
   opdTimings: 'Monday – Saturday: 08:30 AM – 08:00 PM | Sunday: 09:00 AM – 02:00 PM',
   emergencyTimings: '24 Hours, 365 Days Open',
   stats: {
-    specialists: '45+',
-    departments: '18+',
+    beds: '450+',
+    specialists: '70+',
+    years: '25+',
+    emergency: '24×7',
     patientsServed: '1,50,000+',
     bedCount: '450+',
-    rating: '4.8'
+    rating: '4.9'
   }
 };
 
@@ -109,6 +132,7 @@ export const DEPARTMENTS: Department[] = [
     name: 'Cardiology & Cardiac Surgery',
     slug: 'cardiology',
     icon: 'Heart',
+    imageUrl: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Comprehensive care for heart disorders, primary angioplasty, and bypass surgery.',
     fullDesc: 'Our Centre of Excellence in Cardiac Sciences features 2 dedicated Flat-Panel Cath Labs, modular cardiac operation theatres, and a 24/7 STEMI heart attack intervention team.',
     keyServices: ['Coronary Angiography & Angioplasty', 'CABG (Bypass Surgery)', 'Pacemaker & TAVI', 'Echocardiography & TMT'],
@@ -120,6 +144,7 @@ export const DEPARTMENTS: Department[] = [
     name: 'Orthopaedics & Joint Replacement',
     slug: 'orthopaedics',
     icon: 'Bone',
+    imageUrl: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Robotic knee replacement, trauma surgery, sports injury rehabilitation.',
     fullDesc: 'Advanced robotic-assisted knee and hip replacements, arthroscopy, spine surgery, and 24/7 trauma care backed by modern laminar airflow theatres.',
     keyServices: ['Robotic Knee Replacement', 'Hip Replacement', 'Arthroscopy & Sports Injury', 'Spine & Disc Surgery'],
@@ -131,6 +156,7 @@ export const DEPARTMENTS: Department[] = [
     name: 'Neurosciences (Neurology & Neurosurgery)',
     slug: 'neurology',
     icon: 'Brain',
+    imageUrl: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Advanced brain and spine surgery, stroke management, and epilepsy care.',
     fullDesc: 'Equipped with neuro-navigation systems, operating microscopes, and a dedicated 20-bed Neuro ICU to treat stroke, brain tumors, and neuromuscular disorders.',
     keyServices: ['Acute Stroke Thrombolysis', 'Brain Tumor Surgery', 'Epilepsy & Migraine Clinic', 'Deep Brain Stimulation'],
@@ -142,6 +168,7 @@ export const DEPARTMENTS: Department[] = [
     name: 'Paediatrics & Neonatology (NICU)',
     slug: 'paediatrics',
     icon: 'Baby',
+    imageUrl: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Dedicated Level-III NICU, child vaccination, pediatric intensive care.',
     fullDesc: 'Child-friendly environment with 24/7 pediatric emergency coverage, neonatal intensive care unit for premature babies, and developmental clinics.',
     keyServices: ['Level-III Neonatal ICU (NICU)', 'Pediatric Surgery', 'Child Immunization', 'Developmental Assessment'],
@@ -153,6 +180,7 @@ export const DEPARTMENTS: Department[] = [
     name: 'Obstetrics & Gynaecology',
     slug: 'gynaecology',
     icon: 'Users',
+    imageUrl: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Painless normal delivery, high-risk pregnancy care, laparoscopic surgery.',
     fullDesc: 'Specialized suite for maternal care, painless labor techniques (LDR rooms), fertility workup, and minimally invasive laparoscopic gynecological surgeries.',
     keyServices: ['Painless Delivery (LDR Rooms)', 'High-Risk Pregnancy Management', 'Laparoscopic Hysterectomy', 'PCOS & Fertility Care'],
@@ -164,6 +192,7 @@ export const DEPARTMENTS: Department[] = [
     name: 'Oncology & Cancer Care',
     slug: 'oncology',
     icon: 'Activity',
+    imageUrl: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Comprehensive cancer therapy: Surgical, Medical Chemotherapy, and Daycare.',
     fullDesc: 'Multi-disciplinary Tumor Board approach, modern targeted chemotherapy daycare, surgical oncology, and patient-centric cancer rehabilitation.',
     keyServices: ['Chemotherapy & Immunotherapy', 'Surgical Oncology', 'Cancer Screening Packages', 'Palliative & Pain Relief'],
@@ -175,6 +204,7 @@ export const DEPARTMENTS: Department[] = [
     name: 'Gastroenterology & Hepatology',
     slug: 'gastroenterology',
     icon: 'Shield',
+    imageUrl: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Advanced endoscopy, liver disease treatment, laparoscopic GI surgery.',
     fullDesc: 'Complete digestive disease diagnosis and intervention, high-definition video endoscopes, colonoscopy, and specialized liver disease care.',
     keyServices: ['Upper GI Endoscopy & Colonoscopy', 'Liver Cirrhosis & Fatty Liver Clinic', 'ERCP', 'Gallbladder Stone Surgery'],
@@ -186,11 +216,94 @@ export const DEPARTMENTS: Department[] = [
     name: 'Dermatology & Cosmetology',
     slug: 'dermatology',
     icon: 'Sparkles',
+    imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600',
     shortDesc: 'Clinical dermatology, laser treatments, allergy and hair care.',
     fullDesc: 'Evidence-based clinical skincare for eczema, psoriasis, acne, and advanced aesthetic dermatology using US-FDA approved technologies.',
     keyServices: ['Acne & Scar Laser Treatment', 'Psoriasis & Eczema Care', 'Hair Loss Therapy (PRP)', 'Skin Allergy Testing'],
     headDoctor: 'Dr. Ananya Sen',
     symptoms: ['Skin Rashes', 'Severe Acne', 'Sudden Hair Fall', 'Itching & Allergy', 'Psoriasis Patches']
+  }
+];
+
+export const SYMPTOMS_TRIAGE: SymptomTriageItem[] = [
+  { id: 'sym-1', symptom: 'Chest pain', team: 'See: Cardiac care', departmentId: 'dept-cardio', urgency: 'critical' },
+  { id: 'sym-2', symptom: 'Breathlessness', team: 'See: Chest & critical care', departmentId: 'dept-cardio', urgency: 'critical' },
+  { id: 'sym-3', symptom: 'Sudden weakness or slurred speech', team: 'See: Stroke response', departmentId: 'dept-neuro', urgency: 'critical' },
+  { id: 'sym-4', symptom: 'High fever with confusion', team: 'See: General medicine & ICU', departmentId: 'dept-cardio', urgency: 'high' },
+  { id: 'sym-5', symptom: 'Severe injury or accident', team: 'See: Trauma & emergency', departmentId: 'dept-ortho', urgency: 'critical' },
+  { id: 'sym-6', symptom: 'Severe abdominal pain', team: 'See: Surgery & emergency', departmentId: 'dept-gastro', urgency: 'high' },
+  { id: 'sym-7', symptom: 'Loss of consciousness', team: 'See: Emergency & ICU', departmentId: 'dept-neuro', urgency: 'critical' },
+  { id: 'sym-8', symptom: 'Low oxygen levels', team: 'See: Critical care', departmentId: 'dept-cardio', urgency: 'critical' },
+];
+
+export const WHY_CHOOSE_US_ITEMS = [
+  {
+    id: 'why-1',
+    title: 'Senior doctors under one roof',
+    description: 'Multidisciplinary team of intensivists, surgeons, and super-specialists collaborating round the clock.'
+  },
+  {
+    id: 'why-2',
+    title: '24×7 ICU backup',
+    description: 'Always staffed, always ready with round-the-clock intensive care specialists and continuous bedside monitors.'
+  },
+  {
+    id: 'why-3',
+    title: 'Modern equipment',
+    description: 'High-end Philips multi-para monitors, Hamilton invasive ventilators, 3T MRI and advanced digital imaging.'
+  },
+  {
+    id: 'why-4',
+    title: 'Trained nursing team',
+    description: '1:1 nurse-to-patient critical care ratio for highest attention and patient monitoring.'
+  },
+  {
+    id: 'why-5',
+    title: 'Clear communication with families',
+    description: 'Daily transparent updates, compassionate counselling, and complete procedural clarity.'
+  }
+];
+
+export const DIRECTOR_INFO = {
+  title: 'Care that does not wait for office hours.',
+  name: 'Dr. Arvind Sharma',
+  designation: 'Director & Chief Medical Officer',
+  qualifications: 'MBBS, MD (Medicine), DM (Cardiology), FACC (USA)',
+  photoUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800',
+  paragraphs: [
+    'Gaikwad Critical Care Hospital was founded on a steadfast principle: critical care and emergency medicine cannot wait for office hours. In moments of acute medical crisis, every second is precious.',
+    'Our promise to every patient and family is uncompromising clinical excellence, immediate specialist intervention, modern life-support infrastructure, and transparent, compassionate communication throughout the healing journey.'
+  ]
+};
+
+export const PATIENT_VISITOR_GUIDES: PatientGuideItem[] = [
+  {
+    id: 'guide-admission',
+    title: 'Admission',
+    summary: 'What to bring, how emergency and planned admissions work.',
+    points: ['24/7 Zero Waiting Emergency ER', 'Government Photo ID & Insurance Card', 'Fast-track Digital Registration Desk'],
+    linkText: 'Read more →'
+  },
+  {
+    id: 'guide-billing',
+    title: 'Billing',
+    summary: 'Deposits, payment modes and final billing process.',
+    points: ['Transparent Package Estimates', 'UPI, Cards & Net Banking Accepted', 'Itemized Clear Discharge Statements'],
+    linkText: 'Read more →'
+  },
+  {
+    id: 'guide-insurance',
+    title: 'Insurance & Mediclaim',
+    summary: 'Cashless support, TPA panel and documents needed.',
+    points: ['30+ Leading Insurance Companies', 'Dedicated 24/7 On-Site TPA Desk', 'Instant Pre-authorization Processing'],
+    linkText: 'Read more →'
+  },
+  {
+    id: 'guide-visiting',
+    title: 'Visiting hours',
+    summary: 'ICU and ward visiting times and visitor guidelines.',
+    points: ['ICU: 05:00 PM – 06:00 PM (1 Relative)', 'Ward: 11:00 AM – 01:00 PM & 05:00 PM – 07:00 PM', 'Strict Infection Prevention Protocol'],
+    linkText: 'Read more →'
   }
 ];
 
@@ -228,7 +341,7 @@ export const DOCTORS: Doctor[] = [
     availableDays: ['Monday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     availableSlots: ['10:00 AM', '10:45 AM', '11:30 AM', '02:00 PM', '03:00 PM', '05:00 PM'],
     languages: ['English', 'Hindi', 'Malayalam'],
-    photoUrl: 'https://images.unsplash.com/photo-1594824813590-410a71146244?auto=format&fit=crop&q=80&w=600',
+    photoUrl: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600',
     bio: 'Specialist in high-risk newborn care, neonatal survival, and pediatric respiratory conditions. Dedicated to gentle, kid-friendly clinical treatment.'
   },
   {
@@ -473,10 +586,11 @@ export const TESTIMONIALS: Testimonial[] = [
     patientName: 'Rameshwar Khurana',
     treatment: 'Emergency Angioplasty (STEMI)',
     rating: 5,
-    quote: 'When I had sudden severe chest pain at 2:00 AM, AuraCare’s emergency response was lightning fast. The Cath Lab team was ready before our ambulance even arrived. Dr. Arvind Sharma saved my life within 45 minutes.',
+    quote: 'When I had sudden severe chest pain at 2:00 AM, Gaikwad Hospital’s emergency response was lightning fast. The Cath Lab team was ready before our ambulance even arrived. Dr. Arvind Sharma saved my life within 45 minutes.',
     doctorName: 'Dr. Arvind Sharma (Cardiology)',
     date: 'August 2026',
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200'
+    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
+    videoThumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 't-2',
@@ -486,17 +600,19 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'I was unable to walk without support for 4 years. Dr. Rajesh Mehra performed robotic knee surgery on both my knees. I started walking with minimal pain on the very next morning! World-class infrastructure.',
     doctorName: 'Dr. Rajesh Mehra (Orthopaedics)',
     date: 'September 2026',
-    avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200'
+    avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200',
+    videoThumbnail: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 't-3',
     patientName: 'Pooja & Sameer Verma',
     treatment: 'Painless Child Delivery & NICU Care',
     rating: 5,
-    quote: 'Welcoming our baby girl at AuraCare was the most comforting experience. The LDR suite was like a luxury hotel room, and Dr. Priya Nambiar and nursing staff treated our premature baby with pure maternal care.',
+    quote: 'Welcoming our baby girl at Gaikwad Hospital was the most comforting experience. The LDR suite was like a luxury hotel room, and Dr. Priya Nambiar and nursing staff treated our premature baby with pure maternal care.',
     doctorName: 'Dr. Priya Nambiar & Dr. Meenakshi',
     date: 'July 2026',
-    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200'
+    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200',
+    videoThumbnail: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600'
   }
 ];
 

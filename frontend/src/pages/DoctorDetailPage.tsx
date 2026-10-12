@@ -106,6 +106,9 @@ export const DoctorDetailPage: React.FC = () => {
                 <img
                   src={doctor.photoUrl}
                   alt={doctor.name}
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600';
+                  }}
                   style={{
                     width: '130px',
                     height: '130px',
@@ -310,6 +313,9 @@ export const DoctorDetailPage: React.FC = () => {
                       <img
                         src={pd.photoUrl}
                         alt={pd.name}
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600';
+                        }}
                         style={{ width: '46px', height: '46px', borderRadius: '50%', objectFit: 'cover' }}
                       />
                       <div style={{ flex: 1, overflow: 'hidden' }}>
@@ -317,7 +323,7 @@ export const DoctorDetailPage: React.FC = () => {
                           style={{
                             fontSize: '0.9rem',
                             fontWeight: 700,
-                            color: 'var(--dark-navy)',
+                            color: 'var(--text-heading)',
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis'

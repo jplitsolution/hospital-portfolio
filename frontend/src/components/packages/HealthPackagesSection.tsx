@@ -23,17 +23,61 @@ export const HealthPackagesSection: React.FC<Props> = ({ onBookPackage, isSubpag
       borderBottom: '1px solid var(--border-subtle)'
     }}>
       <div className="container">
-        {/* Section Header (Only on Home Page) */}
-        {!isSubpage && (
-          <div className="section-header">
-            <div className="subheading">
-              <Sparkles size={16} />
-              <span>PREVENTIVE DIAGNOSTICS</span>
+        {/* Preventive Health Checkup Packages Banner matching PDF Page 4 */}
+        {!isSubpage ? (
+          <div style={{
+            backgroundColor: '#0C4A4E',
+            borderRadius: '28px',
+            padding: '36px 44px',
+            color: '#FFFFFF',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '24px',
+            marginBottom: '40px',
+            boxShadow: 'var(--shadow-md)'
+          }}>
+            <div>
+              <h2 style={{
+                fontSize: 'clamp(1.8rem, 2.8vw, 2.4rem)',
+                fontWeight: 800,
+                fontFamily: 'var(--font-main)',
+                color: '#FFFFFF',
+                letterSpacing: '-0.02em',
+                marginBottom: '8px'
+              }}>
+                Preventive health checkup packages
+              </h2>
+              <p style={{
+                fontSize: '1rem',
+                color: 'rgba(255, 255, 255, 0.85)',
+                margin: 0,
+                maxWidth: '600px'
+              }}>
+                Comprehensive full body, cardiac, and senior citizen checkup packages starting from ₹2,499 with same-day digital reports.
+              </p>
             </div>
-            <h2>Executive Health Checkup Packages</h2>
-            <p>
-              Detect subtle metabolic and cardiovascular risks before symptoms arise. NABL-accredited automated pathology tests with same-day digital reports.
-            </p>
+
+            <Link
+              to="/book-appointment"
+              className="btn"
+              style={{
+                backgroundColor: 'var(--bg-surface)',
+                color: 'var(--primary)',
+                fontWeight: 700,
+                padding: '14px 28px',
+                borderRadius: 'var(--radius-full)',
+                textDecoration: 'none'
+              }}
+            >
+              <span>Book a checkup</span>
+            </Link>
+          </div>
+        ) : (
+          <div className="section-header" style={{ marginBottom: '32px' }}>
+            <h2>Executive Health Packages</h2>
+            <p>Preventive testing packages with same-day reports.</p>
           </div>
         )}
 

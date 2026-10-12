@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, ShieldCheck } from 'lucide-react';
-import { HOSPITAL_INFO, DEPARTMENTS } from '../../data/hospitalData';
+import { Plus, PhoneCall } from 'lucide-react';
+import { HOSPITAL_INFO } from '../../data/hospitalData';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="hospital-footer">
+    <footer style={{
+      backgroundColor: '#082C35',
+      color: '#FFFFFF',
+      paddingTop: '64px',
+      paddingBottom: '32px',
+      borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+    }}>
       <div className="container">
-        {/* Main Footer Grid */}
+        {/* Main Footer Grid matching PDF Page 5 */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1.4fr 1fr 1fr 1.2fr',
@@ -16,106 +22,173 @@ export const Footer: React.FC = () => {
         }} className="footer-grid">
           <style>{`
             @media (max-width: 1024px) {
-              .footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+              .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; }
             }
             @media (max-width: 600px) {
               .footer-grid { grid-template-columns: 1fr !important; }
             }
           `}</style>
 
-          {/* Column 1: Hospital Brand & Accreditation */}
+          {/* Column 1: Gaikwad Critical Care Hospital branding matching PDF */}
           <div>
-            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <div className="footer-logo-icon">
-                <Plus size={24} strokeWidth={3} />
+            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '16px', textDecoration: 'none' }}>
+              <div style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '8px',
+                backgroundColor: 'var(--secondary)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#FFFFFF'
+              }}>
+                <Plus size={22} strokeWidth={3} />
               </div>
-              <span className="footer-brand-title">
-                <span className="footer-brand-aura">Aura</span>
-                <span className="footer-brand-care">Care</span>
+              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF' }}>
+                Gaikwad
               </span>
             </Link>
 
-            <p className="footer-desc">
-              {HOSPITAL_INFO.description}
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--secondary)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Critical Care Hospital
+            </div>
+
+            <p style={{
+              fontSize: '0.88rem',
+              color: 'rgba(255, 255, 255, 0.75)',
+              lineHeight: 1.6,
+              marginBottom: '16px',
+              maxWidth: '320px'
+            }}>
+              Intensive care and emergency services, open 24×7.
             </p>
 
-            <div className="footer-accreditation-badge">
-              <ShieldCheck size={14} className="accreditation-icon" />
-              <span>NABH & JCI Accredited Hospital</span>
+            <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.85)' }}>
+              Instagram: <br />
+              <strong style={{ color: 'var(--secondary)' }}>@gaikwad_critical_care_hospital</strong>
             </div>
           </div>
 
-          {/* Column 2: Clinical Specialties */}
+          {/* Column 2: Quick links matching PDF Page 5 */}
           <div>
-            <h4 className="footer-column-heading">
-              Centres of Excellence
+            <h4 style={{
+              fontSize: '0.95rem',
+              fontWeight: 800,
+              color: '#FFFFFF',
+              letterSpacing: '0.04em',
+              marginBottom: '18px'
+            }}>
+              Quick links
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.85rem' }}>
-              {DEPARTMENTS.slice(0, 6).map((dept) => (
-                <Link
-                  key={dept.id}
-                  to="/specialties"
-                  className="footer-link"
-                >
-                  • {dept.name}
-                </Link>
-              ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem' }}>
+              <Link to="/doctors" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Find a Doctor
+              </Link>
+              <Link to="/specialties" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Specialities
+              </Link>
+              <Link to="/packages" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Health Checkups
+              </Link>
+              <Link to="/contact" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Contact Us
+              </Link>
             </div>
           </div>
 
-          {/* Column 3: Quick Patient Services */}
+          {/* Column 3: Patients matching PDF Page 5 */}
           <div>
-            <h4 className="footer-column-heading">
-              Patient Services
+            <h4 style={{
+              fontSize: '0.95rem',
+              fontWeight: 800,
+              color: '#FFFFFF',
+              letterSpacing: '0.04em',
+              marginBottom: '18px'
+            }}>
+              Patients
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.85rem' }}>
-              <Link to="/doctors" className="footer-link">Find a Doctor</Link>
-              <Link to="/packages" className="footer-link">Health Checkup Packages</Link>
-              <Link to="/facilities" className="footer-link">Hospital Facilities & ICU</Link>
-              <Link to="/testimonials" className="footer-link">Patient Success Stories</Link>
-              <Link to="/contact" className="footer-link">Contact & Location</Link>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem' }}>
+              <Link to="/facilities" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Admission
+              </Link>
+              <Link to="/facilities" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Billing
+              </Link>
+              <Link to="/#insurance" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Insurance
+              </Link>
+              <Link to="/facilities" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
+                Visiting Hours
+              </Link>
             </div>
           </div>
 
-          {/* Column 4: 24/7 Contacts */}
+          {/* Column 4: Emergency with Call now button matching PDF Page 5 */}
           <div>
-            <h4 className="footer-column-heading">
-              Emergency & Support
+            <h4 style={{
+              fontSize: '0.95rem',
+              fontWeight: 800,
+              color: '#FFFFFF',
+              letterSpacing: '0.04em',
+              marginBottom: '18px'
+            }}>
+              Emergency
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.85rem' }}>
-              <div>
-                <div className="footer-emergency-title">
-                  24/7 Emergency Helpline:
-                </div>
-                <div className="footer-emergency-number">
-                  {HOSPITAL_INFO.emergencyNumber}
-                </div>
-              </div>
 
-              <div>
-                <div className="footer-muted-text">Ambulance Dispatch:</div>
-                <div className="footer-ambulance-number">{HOSPITAL_INFO.ambulanceNumber}</div>
-              </div>
-
-              <div>
-                <div className="footer-muted-text">Campus Address:</div>
-                <div className="footer-address-text">{HOSPITAL_INFO.address}</div>
-              </div>
+            <div style={{
+              fontSize: '1.25rem',
+              fontWeight: 800,
+              color: 'var(--coral-light)',
+              marginBottom: '4px'
+            }}>
+              {HOSPITAL_INFO.emergencyNumber}
             </div>
+
+            <div style={{
+              fontSize: '0.86rem',
+              color: 'rgba(255, 255, 255, 0.75)',
+              marginBottom: '16px'
+            }}>
+              24×7, every day
+            </div>
+
+            <a
+              href={`tel:${HOSPITAL_INFO.emergencyNumber.replace(/[^0-9]/g, '')}`}
+              className="btn btn-coral"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 28px',
+                borderRadius: 'var(--radius-full)',
+                fontWeight: 700,
+                fontSize: '0.92rem',
+                textDecoration: 'none'
+              }}
+            >
+              <PhoneCall size={16} />
+              <span>Call now</span>
+            </a>
           </div>
         </div>
 
-        {/* Statutory Compliance & Disclaimers */}
-        <div className="footer-bottom-bar">
+        {/* Bottom Bar matching PDF */}
+        <div style={{
+          paddingTop: '28px',
+          borderTop: '1px solid rgba(255, 255, 255, 0.12)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '12px',
+          fontSize: '0.82rem',
+          color: 'rgba(255, 255, 255, 0.6)'
+        }}>
           <div>
-            © 2026 {HOSPITAL_INFO.name}. All Rights Reserved. | Registration No: HOSP/ND/2026/8901
+            © 2026 Gaikwad Critical Care Hospital. All rights reserved.
           </div>
-
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-            <span>Bio-Medical Waste (BMW) Compliance</span>
-            <span>NPPA Implant Pricing Transparency</span>
-            <span>Privacy Policy</span>
-            <span>Terms of Care</span>
+          <div>
+            NABH Accredited & 100% Cashless Mediclaim Partner
           </div>
         </div>
       </div>
