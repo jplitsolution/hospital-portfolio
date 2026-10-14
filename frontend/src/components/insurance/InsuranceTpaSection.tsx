@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShieldCheck, PhoneCall, FileCheck, CheckCircle } from 'lucide-react';
-import { INSURANCE_PARTNERS } from '../../data/hospitalData';
+import { INSURANCE_PARTNERS, HOSPITAL_INFO } from '../../data/hospitalData';
 
 export const InsuranceTpaSection: React.FC = () => {
   return (
@@ -63,8 +63,13 @@ export const InsuranceTpaSection: React.FC = () => {
               border: '1px solid var(--border-subtle)',
               fontSize: '0.88rem'
             }}>
-              <PhoneCall size={18} color="var(--primary)" />
-              <span>TPA Desk Helpline: <strong>011-4771-0088</strong></span>
+              <a
+                href={`tel:${HOSPITAL_INFO.opdBoardline.replace(/[^0-9]/g, '')}`}
+                style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              >
+                <PhoneCall size={18} color="var(--primary)" />
+                <span>TPA Desk Helpline: <strong>{HOSPITAL_INFO.opdBoardline}</strong></span>
+              </a>
             </div>
           </div>
 

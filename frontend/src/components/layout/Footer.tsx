@@ -50,18 +50,23 @@ export const Footer: React.FC = () => {
             </Link>
 
             <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--secondary)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Critical Care Hospital
+              Advanced Critical Care Facility
             </div>
 
             <p style={{
               fontSize: '0.88rem',
               color: 'rgba(255, 255, 255, 0.75)',
               lineHeight: 1.6,
-              marginBottom: '16px',
+              marginBottom: '10px',
               maxWidth: '320px'
             }}>
-              Intensive care and emergency services, open 24×7.
+              24×7 ICU & Emergency Care with experienced intensivists and modern life-support systems.
             </p>
+
+            <div style={{ fontSize: '0.84rem', color: 'rgba(255, 255, 255, 0.85)', marginBottom: '14px', lineHeight: 1.5 }}>
+              📍 Reshim Bagh, Nagpur<br />
+              <span style={{ fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.65)' }}>Plot No. 31, Sakkardara Square, Umrer Rd</span>
+            </div>
 
             <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.85)' }}>
               Instagram: <br />
@@ -132,7 +137,7 @@ export const Footer: React.FC = () => {
               letterSpacing: '0.04em',
               marginBottom: '18px'
             }}>
-              Emergency
+              24×7 Emergency & ICU
             </h4>
 
             <div style={{
@@ -149,7 +154,7 @@ export const Footer: React.FC = () => {
               color: 'rgba(255, 255, 255, 0.75)',
               marginBottom: '16px'
             }}>
-              24×7, every day
+              24×7, every day • Reshim Bagh, Nagpur
             </div>
 
             <a
@@ -167,7 +172,7 @@ export const Footer: React.FC = () => {
               }}
             >
               <PhoneCall size={16} />
-              <span>Call now</span>
+              <span>Call: 0712 274 0741</span>
             </a>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { HOSPITAL_INFO } from '../../data/hospitalData';
 
 export const WhatsAppFloating: React.FC = () => {
   const whatsappUrl = `https://wa.me/${HOSPITAL_INFO.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-    'Hello AuraCare Hospital Desk, I would like to inquire about OPD Doctor Consultation and Facilities.'
+    'Hello Gaikwad Critical Care Hospital Desk, I would like to inquire about 24x7 ICU & Emergency Care, Doctor Consultation and Facilities at Reshim Bagh, Nagpur.'
   )}`;
 
   return (

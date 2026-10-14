@@ -14,7 +14,7 @@ export const TestimonialsPage: React.FC<Props> = ({ onOpenBooking }) => {
       <PageHeader
         badge="PATIENT SUCCESS STORIES"
         title="Trusted by Over 1,50,000+ Families"
-        description="Read firsthand recovery journeys, verified Google Reviews, and heartfelt clinical feedback from patients treated at AuraCare Superspeciality Hospital."
+        description="Read firsthand recovery journeys, verified Google Reviews, and heartfelt clinical feedback from patients treated at Gaikwad Critical Care Hospital, Nagpur."
         currentPage="Testimonials"
         onOpenBooking={onOpenBooking}
       />

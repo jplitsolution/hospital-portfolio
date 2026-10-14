@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Ambulance, Moon, Sun, Eye, Globe } from 'lucide-react';
+import { Phone, Ambulance, Moon, Sun, Eye, Globe, MapPin } from 'lucide-react';
 import { HOSPITAL_INFO } from '../../data/hospitalData';
 
 interface Props {
@@ -61,6 +61,11 @@ export const EmergencyTopBar: React.FC<Props> = ({
             display: none !important;
           }
         }
+        @media (max-width: 920px) {
+          .emergency-top-bar .topbar-location {
+            display: none !important;
+          }
+        }
         @media (max-width: 768px) {
           .emergency-top-bar .topbar-font-group,
           .emergency-top-bar .topbar-contrast-label,
@@ -75,15 +80,30 @@ export const EmergencyTopBar: React.FC<Props> = ({
       `}</style>
 
       <div className="container topbar-container">
-        {/* Left: Emergency Hotlines & Email */}
+        {/* Left: Emergency Hotlines & Location */}
         <div className="topbar-left">
           <a
             href={`tel:${HOSPITAL_INFO.emergencyNumber.replace(/[^0-9]/g, '')}`}
             className="emergency-badge-link"
           >
             <Phone size={13} style={{ flexShrink: 0 }} />
-            <span>24×7 Emergency & ICU: {HOSPITAL_INFO.emergencyNumber}</span>
+            <span>24×7 ICU & Emergency: {HOSPITAL_INFO.emergencyNumber}</span>
           </a>
+
+          <span
+            className="topbar-location"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px',
+              fontWeight: 600,
+              fontSize: '0.82rem',
+              color: '#F8FAFC'
+            }}
+          >
+            <MapPin size={13} style={{ color: 'var(--coral-light)', flexShrink: 0 }} />
+            <span>Reshim Bagh, Nagpur</span>
+          </span>
 
           <a
             href="tel:108"
@@ -99,7 +119,7 @@ export const EmergencyTopBar: React.FC<Props> = ({
           >
             <Ambulance size={14} className="ambulance-icon" style={{ flexShrink: 0 }} />
             <span>
-              Ambulance: 108 <span className="topbar-ambulance-detail">/ +91-9871-108108</span>
+              Ambulance: 108 <span className="topbar-ambulance-detail">/ {HOSPITAL_INFO.emergencyNumber}</span>
             </span>
           </a>
 

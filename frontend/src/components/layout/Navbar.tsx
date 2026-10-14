@@ -17,9 +17,9 @@ export const Navbar: React.FC<Props> = ({
 
   const navLinks = [
     { label: 'Find a Doctor', path: '/doctors' },
-    { label: 'Treatments & Specialities', path: '/specialties' },
-    { label: 'Patients & Visitors', path: '/facilities' },
-    { label: 'Health Checkups', path: '/packages' },
+    { label: 'Specialities', path: '/specialties' },
+    { label: 'Facilities', path: '/facilities' },
+    { label: 'Health Packages', path: '/packages' },
     { label: 'Insurance', path: '/#insurance' },
     { label: 'Contact', path: '/contact' },
   ];
@@ -37,10 +37,11 @@ export const Navbar: React.FC<Props> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: '76px'
+        height: '76px',
+        gap: '20px'
       }}>
         {/* Brand Logo - Gaikwad Critical Care Hospital */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0, textDecoration: 'none' }}>
           <div style={{
             width: '42px',
             height: '42px',
@@ -50,13 +51,14 @@ export const Navbar: React.FC<Props> = ({
             alignItems: 'center',
             justifyContent: 'center',
             color: '#FFFFFF',
-            boxShadow: '0 4px 12px rgba(13, 148, 136, 0.3)'
+            boxShadow: '0 4px 12px rgba(13, 148, 136, 0.3)',
+            flexShrink: 0
           }}>
             <Plus size={26} strokeWidth={3.5} />
           </div>
           <div>
             <div style={{
-              fontSize: '1.28rem',
+              fontSize: '1.24rem',
               fontWeight: 800,
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
@@ -65,7 +67,7 @@ export const Navbar: React.FC<Props> = ({
               Gaikwad
             </div>
             <div style={{
-              fontSize: '0.68rem',
+              fontSize: '0.66rem',
               fontWeight: 700,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
@@ -80,8 +82,18 @@ export const Navbar: React.FC<Props> = ({
         <nav className="desktop-nav">
           <style>{`
             @media (min-width: 1024px) {
-              .desktop-nav { display: flex !important; align-items: center; gap: clamp(10px, 1.4vw, 22px) !important; }
-              .desktop-actions { display: flex !important; align-items: center; gap: 10px !important; }
+              .desktop-nav { 
+                display: flex !important; 
+                align-items: center; 
+                gap: clamp(10px, 1.4vw, 22px) !important; 
+                flex-shrink: 1;
+              }
+              .desktop-actions { 
+                display: flex !important; 
+                align-items: center; 
+                gap: 12px !important; 
+                flex-shrink: 0;
+              }
               .mobile-toggle { display: none !important; }
             }
           `}</style>
@@ -96,7 +108,8 @@ export const Navbar: React.FC<Props> = ({
                   fontSize: '0.9rem',
                   fontWeight: active ? 700 : 500,
                   color: active ? 'var(--primary)' : 'var(--text-main)',
-                  textDecoration: 'none'
+                  textDecoration: 'none',
+                  padding: '6px 2px'
                 }}
               >
                 {link.label}
@@ -111,7 +124,7 @@ export const Navbar: React.FC<Props> = ({
           <button
             onClick={onOpenReports}
             className="btn btn-outline btn-sm navbar-reports-btn"
-            style={{ borderRadius: 'var(--radius-full)' }}
+            style={{ borderRadius: 'var(--radius-full)', padding: '8px 16px', fontSize: '0.88rem' }}
           >
             <FileText size={15} />
             <span>Reports</span>
@@ -120,7 +133,7 @@ export const Navbar: React.FC<Props> = ({
           <Link
             to="/book-appointment"
             className="btn btn-coral btn-sm navbar-book-btn"
-            style={{ borderRadius: 'var(--radius-full)' }}
+            style={{ borderRadius: 'var(--radius-full)', padding: '8px 20px', fontSize: '0.88rem' }}
           >
             <Calendar size={15} />
             <span>Book Appointment</span>

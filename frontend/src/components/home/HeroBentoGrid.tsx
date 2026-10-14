@@ -12,7 +12,8 @@ import {
   X,
   CheckCircle2,
   Clock,
-  ShieldCheck
+  ShieldCheck,
+  MapPin
 } from 'lucide-react';
 import { HOSPITAL_INFO } from '../../data/hospitalData';
 
@@ -79,21 +80,28 @@ export const HeroBentoGrid: React.FC<Props> = ({
 
           {/* Left Column: Hospital Tagline & 3 CTA Buttons */}
           <div>
-            {/* Tagline Strip matching PDF: INTENSIVE CARE · EMERGENCY · DIAGNOSTICS */}
+            {/* Tagline Strip: 🏥 ADVANCED CRITICAL CARE FACILITY • 📍 RESHIM BAGH, NAGPUR */}
             <div style={{
-              display: 'inline-block',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 16px',
+              borderRadius: 'var(--radius-full)',
+              backgroundColor: 'rgba(13, 148, 136, 0.12)',
               color: 'var(--secondary)',
               fontWeight: 800,
-              fontSize: '0.86rem',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
+              fontSize: '0.84rem',
+              letterSpacing: '0.04em',
               marginBottom: '18px',
+              border: '1px solid rgba(13, 148, 136, 0.25)',
               fontFamily: 'var(--font-main)'
             }}>
-              INTENSIVE CARE · EMERGENCY · DIAGNOSTICS
+              <span>🏥 Advanced Critical Care Facility</span>
+              <span style={{ opacity: 0.5 }}>•</span>
+              <span>📍 Reshim Bagh, Nagpur</span>
             </div>
 
-            {/* Headline matching PDF: Expert critical care, awake every hour of the day. */}
+            {/* Headline */}
             <h1 style={{
               fontSize: 'clamp(2.4rem, 4.4vw, 3.6rem)',
               fontWeight: 800,
@@ -103,9 +111,9 @@ export const HeroBentoGrid: React.FC<Props> = ({
               lineHeight: 1.15,
               fontFamily: 'var(--font-main)'
             }}>
-              Expert critical care, <br />
-              awake every hour of <br />
-              the day.
+              24×7 ICU & <br />
+              Emergency Care, <br />
+              Awake Every Hour.
             </h1>
 
             {/* Subtext description */}
@@ -116,7 +124,7 @@ export const HeroBentoGrid: React.FC<Props> = ({
               maxWidth: '560px',
               lineHeight: 1.65
             }}>
-              A dedicated critical care hospital where senior doctors, trained nurses and modern ICU equipment work together when it matters most.
+              Advanced Critical Care Facility in Reshim Bagh, Nagpur where senior intensivists, trained ICU nurses, and modern life-support systems stand ready 24×7 when it matters most.
             </p>
 
             {/* 3 Buttons Side-by-side matching Cloudnine reference */}
@@ -138,7 +146,7 @@ export const HeroBentoGrid: React.FC<Props> = ({
                 }}
               >
                 <PhoneCall size={18} />
-                <span>Call Emergency</span>
+                <span>Call: 0712 274 0741</span>
               </a>
 
               <Link
@@ -176,7 +184,7 @@ export const HeroBentoGrid: React.FC<Props> = ({
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '24px',
+              gap: '20px',
               flexWrap: 'wrap',
               paddingTop: '20px',
               borderTop: '1px solid var(--border-subtle)'
@@ -184,7 +192,13 @@ export const HeroBentoGrid: React.FC<Props> = ({
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Clock size={16} color="var(--secondary)" />
                 <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)' }}>
-                  Zero Waiting Emergency ICU
+                  🩺 24×7 ICU & Emergency Care
+                </span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <MapPin size={16} color="var(--coral)" />
+                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)' }}>
+                  📍 Reshim Bagh, Nagpur
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -265,10 +279,10 @@ export const HeroBentoGrid: React.FC<Props> = ({
               </div>
               <div>
                 <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--text-heading)', lineHeight: 1.2 }}>
-                  24×7 ICU backup
+                  24×7 ICU & Emergency Care
                 </div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                  Always staffed, always ready
+                  Reshim Bagh, Nagpur • Call 0712 274 0741
                 </div>
               </div>
             </div>
@@ -582,7 +596,7 @@ export const HeroBentoGrid: React.FC<Props> = ({
                   <input
                     type="text"
                     required
-                    placeholder="e.g. UHID-90812 or 9871108108"
+                    placeholder="e.g. UHID-90812 or 98230XXXXX"
                     value={uhid}
                     onChange={(e) => setUhid(e.target.value)}
                     style={{

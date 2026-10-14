@@ -88,7 +88,7 @@ export const PageHeader: React.FC<Props> = ({
           { value: '1.5L+', label: 'Families Healed', sublabel: 'Inpatient Care', icon: <Heart size={20} color="#E11D48" /> },
           { value: '4.9 / 5.0', label: 'Verified Rating', sublabel: 'Google & Practo', icon: <Star size={20} color="#F59E0B" /> },
           { value: '98.6%', label: 'Family Trust', sublabel: 'Recommendation Index', icon: <Award size={20} color="#00BFA5" /> },
-          { value: '#1', label: 'Excellence', sublabel: 'Voted in Delhi-NCR', icon: <ShieldCheck size={20} color="#10B981" /> }
+          { value: '#1', label: 'Excellence', sublabel: 'Top in Nagpur', icon: <ShieldCheck size={20} color="#10B981" /> }
         ];
       case 'Contact':
         return [

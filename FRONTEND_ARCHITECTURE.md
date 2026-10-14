@@ -83,7 +83,7 @@ Frontend development ko hum 4 structured phases me divide karenge:
 **Goal:** Ek visually stunning hospital portfolio banana jo desktop aur mobile dono par patient ko impress kare aur basic discovery enable kare.
 
 1. **Top Emergency Bar (Sticky):**
-   * Red/Coral alert badge: `🚨 24/7 Emergency: 011-4771-XXXX | Ambulance: 108`.
+   * Red/Coral alert badge: `🚨 24/7 Emergency: 0712 274 0741 | Ambulance: 108`.
    * Click-to-call direct dialer links.
    * Language quick-toggle (English / हिन्दी).
 2. **Main Navigation Header:**

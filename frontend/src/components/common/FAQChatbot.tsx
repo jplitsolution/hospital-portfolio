@@ -11,7 +11,7 @@ export const FAQChatbot: React.FC<Props> = ({ onOpenBooking }) => {
   const [messages, setMessages] = useState<Array<{ sender: 'bot' | 'user'; text: string; action?: 'booking' | 'call' }>>([
     {
       sender: 'bot',
-      text: 'Namaste! 🙏 I am your AuraCare Hospital Virtual Assistant. How can I assist you with doctor schedules, reports, or emergency services today?'
+      text: 'Namaste! 🙏 I am your Gaikwad Critical Care Virtual Assistant. How can I assist you with 24x7 ICU & Emergency services, doctor schedules, or reports today?'
     }
   ]);
   const [inputText, setInputText] = useState('');
@@ -44,7 +44,7 @@ export const FAQChatbot: React.FC<Props> = ({ onOpenBooking }) => {
 
     // Find keyword match
     const lower = userText.toLowerCase();
-    let reply = "Our team is here to help! You can book an appointment online or contact our 24/7 hospital desk at 011-4771-0000.";
+    let reply = `Our team is here to help! You can book an appointment online or contact our 24/7 hospital desk at ${HOSPITAL_INFO.emergencyNumber}.`;
 
     if (lower.includes('timing') || lower.includes('opd') || lower.includes('time') || lower.includes('samay')) {
       reply = `OPD Consultation hours: ${HOSPITAL_INFO.opdTimings}. Emergency services are open 24 Hours, 365 days.`;
@@ -136,8 +136,8 @@ export const FAQChatbot: React.FC<Props> = ({ onOpenBooking }) => {
                 <Bot size={20} />
               </div>
               <div>
-                <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>AuraCare AI Assistant</div>
-                <div style={{ fontSize: '0.72rem', color: 'rgba(255, 255, 255, 0.85)' }}>Always Active • Verified Info</div>
+                <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>Gaikwad Critical Care Assistant</div>
+                <div style={{ fontSize: '0.72rem', color: 'rgba(255, 255, 255, 0.85)' }}>24x7 Active • Reshim Bagh, Nagpur</div>
               </div>
             </div>
 

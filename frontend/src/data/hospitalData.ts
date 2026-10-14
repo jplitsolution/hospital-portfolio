@@ -102,26 +102,26 @@ export interface PatientGuideItem {
 export const HOSPITAL_INFO = {
   name: 'Gaikwad Critical Care Hospital',
   brandName: 'Gaikwad',
-  categoryTag: 'CRITICAL CARE HOSPITAL',
-  tagline: 'Expert critical care, awake every hour of the day.',
-  heroSubtitle: 'A dedicated critical care hospital where senior doctors, trained nurses and modern ICU equipment work together when it matters most.',
-  description: 'A dedicated 450-bed critical care hospital where senior doctors, trained nurses, and modern ICU equipment work together when it matters most.',
-  emergencyNumber: '011-4771-9999',
-  ambulanceNumber: '108 / +91-9871-108108',
-  opdBoardline: '011-4771-0000',
-  whatsappNumber: '+919871108108',
+  categoryTag: 'ADVANCED CRITICAL CARE FACILITY',
+  tagline: '24x7 ICU & Emergency Care',
+  heroSubtitle: 'Advanced Critical Care Facility in Reshim Bagh, Nagpur where senior intensivists, trained ICU nurses, and modern life-support systems stand ready 24×7.',
+  description: 'Advanced Critical Care Facility in Reshim Bagh, Nagpur providing 24x7 ICU & Emergency Care, modern ventilator support, and specialized critical care doctors.',
+  emergencyNumber: '0712 274 0741',
+  ambulanceNumber: '108 / 0712 274 0741',
+  opdBoardline: '0712 274 0741',
+  whatsappNumber: '+917122740741',
   email: 'care@gaikwadhospital.com',
-  address: 'Plot 12, Institutional Area, Sector 44, New Delhi - 110003',
-  landmark: 'Opposite Metro Interchange, Express Corridor',
+  address: 'Plot No. 31, Reshim Bagh, Sakkardara Square, Umrer Road, Nagpur, Maharashtra - 440009',
+  landmark: 'Near Sakkardara Square, Reshim Bagh, Nagpur',
   opdTimings: 'Monday – Saturday: 08:30 AM – 08:00 PM | Sunday: 09:00 AM – 02:00 PM',
-  emergencyTimings: '24 Hours, 365 Days Open',
+  emergencyTimings: '24×7 ICU & Emergency Care (Open 365 Days)',
   stats: {
-    beds: '450+',
-    specialists: '70+',
+    beds: '100+',
+    specialists: '40+',
     years: '25+',
     emergency: '24×7',
     patientsServed: '1,50,000+',
-    bedCount: '450+',
+    bedCount: '100+',
     rating: '4.9'
   }
 };
@@ -667,13 +667,13 @@ export const FAQS: FAQItem[] = [
   {
     id: 'faq-1',
     question: 'How do I book an OPD appointment with a specialist?',
-    answer: 'You can easily book online using our 5-Step Appointment Wizard on this website, or call our OPD boardline at 011-4771-0000. You will receive an instant confirmation SMS and WhatsApp message with your token number.',
+    answer: 'You can easily book online using our 5-Step Appointment Wizard on this website, or call our boardline at 0712 274 0741. You will receive an instant confirmation SMS and WhatsApp message with your token number.',
     category: 'OPD'
   },
   {
     id: 'faq-2',
     question: 'What is the procedure during a medical emergency or heart attack?',
-    answer: 'Call our 24x7 Ambulance Helpline at 108 or 011-4771-9999 immediately. Our ICU-equipped emergency ambulance with an onboard medical officer will be dispatched. Our Emergency ER room is staffed round-the-clock.',
+    answer: 'Call our 24x7 Ambulance Helpline at 108 or 0712 274 0741 immediately. Our ICU-equipped emergency ambulance with an onboard medical officer will be dispatched. Our Emergency ER room is staffed round-the-clock.',
     category: 'EMERGENCY'
   },
   {

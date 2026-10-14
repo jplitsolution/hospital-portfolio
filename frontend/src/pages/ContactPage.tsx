@@ -11,8 +11,8 @@ export const ContactPage: React.FC<Props> = ({ onOpenBooking }) => {
     <div className="subpage-wrapper">
       <PageHeader
         badge="24/7 EMERGENCY & ADMISSIONS"
-        title="Contact AuraCare Hospital Campus"
-        description="Strategically located in Sector 44, New Delhi with 24/7 emergency trauma access, dedicated multi-level visitor parking, and immediate metro connectivity."
+        title="Contact Gaikwad Critical Care Hospital"
+        description="Advanced Critical Care Facility strategically located in Reshim Bagh, Nagpur with 24x7 ICU & Emergency Care, ventilator support, and direct ambulance access."
         currentPage="Contact"
         onOpenBooking={onOpenBooking}
       />
